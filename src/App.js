@@ -2,6 +2,8 @@ import React from 'react'
 import styled, { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './themes';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 //container to set up grid layout 
 //grid temp areas for readability 
@@ -48,6 +50,7 @@ function App() {
   const [theme, setTheme] = React.useState(lightTheme);
 //theme provider to provide theme properties to components 
 return (
+  <Provider store={store}>
   <ThemeProvider theme={theme}>
     <Router>
       <Container>
@@ -69,6 +72,7 @@ return (
       </Container>
     </Router>
   </ThemeProvider>
+  </Provider>
 );
 }
 
