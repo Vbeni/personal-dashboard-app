@@ -1,6 +1,7 @@
 import React from 'react'
 import styled, { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './themes';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 //container to set up grid layout 
 //grid temp areas for readability 
@@ -43,20 +44,32 @@ const Footer = styled.footer`
   text-align: center;
 `;
 
-//theme provider to provide theme properties to components 
 function App() {
   const [theme, setTheme] = React.useState(lightTheme);
-
-  return (
-    <ThemeProvider theme={theme}>
+//theme provider to provide theme properties to components 
+return (
+  <ThemeProvider theme={theme}>
+    <Router>
       <Container>
-        <Header>Personal Dashboard</Header>
+        <Header>
+          Personal Dashboard
+          <nav>
+            <Link to="/">Home</Link>
+            <Link to="/notes">Notes</Link>
+          </nav>
+        </Header>
         <Sidebar>Sidebar</Sidebar>
-        <Main>Main Content</Main>
+        <Main>
+          <Routes>
+          <Route path="/" element={<div>Home Content</div>} />
+          <Route path="/notes" element={<div>Notes Content</div>} />
+          </Routes>
+        </Main>
         <Footer>Footer</Footer>
       </Container>
-    </ThemeProvider>
-  )
+    </Router>
+  </ThemeProvider>
+);
 }
 
 export default App
