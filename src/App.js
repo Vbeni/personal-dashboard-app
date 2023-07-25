@@ -1,21 +1,24 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components';
+import { lightTheme, darkTheme } from './themes';
 
+//container to set up grid layout 
+//grid temp areas for readability 
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 3fr;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr auto;  
   grid-template-areas:
     "header header"
     "sidebar main"
     "footer footer";
   height: 100vh;
 `;
-
+//individually styled components 
 const Header = styled.header`
   grid-area: header;
-  background-color: #333;
-  color: white;
+  background-color: ${props => props.theme.headerBg};
+  color: ${props => props.theme.textColor};
   padding: 1rem;
   text-align: center;
 `;
@@ -40,14 +43,19 @@ const Footer = styled.footer`
   text-align: center;
 `;
 
+//theme provider to provide theme properties to components 
 function App() {
+  const [theme, setTheme] = React.useState(lightTheme);
+
   return (
-    <Container>
-    <Header>Personal Dashboard</Header>
-    <Sidebar>Sidebar</Sidebar>
-    <Main>Main Content</Main>
-    <Footer>Footer</Footer>
-    </Container>
+    <ThemeProvider theme={theme}>
+      <Container>
+        <Header>Personal Dashboard</Header>
+        <Sidebar>Sidebar</Sidebar>
+        <Main>Main Content</Main>
+        <Footer>Footer</Footer>
+      </Container>
+    </ThemeProvider>
   )
 }
 
