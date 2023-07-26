@@ -10,6 +10,22 @@ const NoteItem = styled.li`
   padding: 10px;
 `;
 
+const DeleteButton = styled.button`
+  background-color: #f44336;  // Red color
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  margin-left: 10px;
+  padding: 5px 10px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #e53935;  // Darker red on hover
+  }
+`;
+
+
 //tracks note being typed
 const Notes = () => {
   const [note, setNote] = useState('');
@@ -35,7 +51,11 @@ const Notes = () => {
       <button onClick={addNote}>Add Note</button>
       <ul>
         {notes.map((noteItem, index) => (
-          <NoteItem key={index}>{noteItem}</NoteItem>
+          <NoteItem key={index}>{noteItem}
+          <DeleteButton onClick={() => dispatch({ type: 'DELETE_NOTE', payload: index })}>
+            Delete
+          </DeleteButton>
+          </NoteItem>
         ))}
       </ul>
     </div>

@@ -8,10 +8,17 @@ const initialState = {
     switch (action.type) {
       case 'ADD_NOTE':
         return { ...state, notes: [...state.notes, action.payload] };
+      //delete note using filter   
+      case 'DELETE_NOTE':
+        return { 
+          ...state, 
+          notes: state.notes.filter((_, index) => index !== action.payload)
+        };
       default:
         return state;
     }
   };
+  
   
   export default notesReducer;
   
