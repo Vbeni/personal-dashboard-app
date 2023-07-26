@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
+
+const NoteItem = styled.li`
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  padding: 10px;
+`;
 
 //tracks note being typed
 const Notes = () => {
@@ -26,7 +35,7 @@ const Notes = () => {
       <button onClick={addNote}>Add Note</button>
       <ul>
         {notes.map((noteItem, index) => (
-          <li key={index}>{noteItem}</li>
+          <NoteItem key={index}>{noteItem}</NoteItem>
         ))}
       </ul>
     </div>
