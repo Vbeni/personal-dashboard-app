@@ -14,8 +14,13 @@ const initialState = {
           ...state, 
           notes: state.notes.filter((_, index) => index !== action.payload)
         };
-      default:
-        return state;
+        //copy of current note and then replacing with edit
+      case 'EDIT_NOTE':
+        const updatedNotes = [...state.notes];
+        updatedNotes[action.payload.index] = action.payload.newContent;
+            return { ...state, notes: updatedNotes };
+          default:
+            return state;
     }
   };
   
