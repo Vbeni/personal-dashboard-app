@@ -4,6 +4,7 @@ import { lightTheme, darkTheme } from './themes';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import Notes from './components/Notes';
 
 //container to set up grid layout 
 //grid temp areas for readability 
@@ -65,7 +66,7 @@ return (
         <Main>
           <Routes>
           <Route path="/" element={<div>Home Content</div>} />
-          <Route path="/notes" element={<div>Notes Content</div>} />
+          <Route path="/notes" element={<Notes />} />
           </Routes>
         </Main>
         <Footer>Footer</Footer>
